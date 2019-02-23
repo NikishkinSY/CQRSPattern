@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 
-namespace CQRSPattern
+namespace Core
 {
     public static class DependencyInjection
     {

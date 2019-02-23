@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using Core;
+using DAL;
 using DAL.CQRS;
 using DAL.CQRS.Commands;
 using DAL.CQRS.Queries;
