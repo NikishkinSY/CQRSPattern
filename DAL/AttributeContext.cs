@@ -1,6 +1,5 @@
 ﻿using DAL.DAO;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace DAL
 {
