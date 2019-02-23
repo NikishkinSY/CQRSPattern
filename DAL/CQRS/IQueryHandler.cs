@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace DAL.CQRS
+﻿namespace DAL.CQRS
 {
-    public interface IQueryHandler<in T, TResponse> where T : IQuery<TResponse>
+    public interface IQueryHandler<in T, out TResponse> where T : IQuery
     {
-        Task<TResponse> Handle(T query);
+        TResponse Handle(T query);
     }
 }
