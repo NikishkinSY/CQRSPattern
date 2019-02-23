@@ -24,7 +24,8 @@ namespace CQRSPattern
             context.Database.OpenConnection();
 
             // create db and fill with data
-            DbValidator.CheckDb(context);
+            var dvValidator = provider.GetService<DbValidator>();
+            dvValidator.CheckDb();
 
             // update command
             var updateAttributeNameCommandHandler = provider.GetService<ICommandHandler<UpdateAttributeNameCommand>>();

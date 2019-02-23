@@ -21,6 +21,7 @@ namespace Core
                         new DbContextOptionsBuilder<AttributeContext>().UseSqlite(connectionString).Options))
                 .AddTransient<ICommandHandler<UpdateAttributeNameCommand>, UpdateAttributeNameCommandHandler>()
                 .AddTransient<IQueryHandler<GetAttributesQuery, IEnumerable<Attribute>>, GetAttributesQueryHandler>()
+                .AddTransient<DbValidator>()
                 .BuildServiceProvider();
         }
     }
