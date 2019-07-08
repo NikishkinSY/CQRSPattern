@@ -4,13 +4,11 @@ using DAL.CQRS.Commands;
 
 namespace DAL.CQRS.CommandHandlers
 {
-    public class UpdateAttributeNameCommandHandler: ICommandHandler<UpdateAttributeNameCommand>
+    public class UpdateAttributeNameCommandHandler: HandlerBase, ICommandHandler<UpdateAttributeNameCommand>
     {
-        AttributeContext Context { get; }
-
         public UpdateAttributeNameCommandHandler(AttributeContext context)
+            :base(context)
         {
-            Context = context;
         }
 
         public void Handle(UpdateAttributeNameCommand command)

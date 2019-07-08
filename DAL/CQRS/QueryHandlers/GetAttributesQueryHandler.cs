@@ -4,13 +4,11 @@ using DAL.CQRS.Queries;
 
 namespace DAL.CQRS.QueryHandlers
 {
-    public class GetAttributesQueryHandler : IQueryHandler<GetAttributesQuery, IEnumerable<Attribute>>
+    public class GetAttributesQueryHandler : HandlerBase, IQueryHandler<GetAttributesQuery, IEnumerable<Attribute>>
     {
-        private AttributeContext Context { get; }
-
         public GetAttributesQueryHandler(AttributeContext context)
+            :base(context)
         {
-            Context = context;
         }
 
         public IEnumerable<Attribute> Handle(GetAttributesQuery query)
