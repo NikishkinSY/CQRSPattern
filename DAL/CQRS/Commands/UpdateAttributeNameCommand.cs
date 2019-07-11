@@ -5,7 +5,7 @@
         public int Id { get; private set; }
         public string NewName { get; private set; }
 
-        public UpdateAttributeNameCommand(string newName, int id)
+        public UpdateAttributeNameCommand(int id, string newName)
         {
             NewName = newName;
             Id = id;

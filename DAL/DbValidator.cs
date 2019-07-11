@@ -17,9 +17,9 @@ namespace DAL
             Context.Database.EnsureCreated();
             if (!Context.Attributes.Any())
             {
-                Context.Add(new Attribute(1, "Attribute1"));
-                Context.Add(new Attribute(2, "Attribute2"));
-                Context.Add(new Attribute(3, "Attribute3"));
+                Context.Add(new Attribute(1, "Attribute1", "Description1"));
+                Context.Add(new Attribute(2, "Attribute2", "Description2"));
+                Context.Add(new Attribute(3, "Attribute3", "Description3"));
                 Context.SaveChanges();
             }
         }

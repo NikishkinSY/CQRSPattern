@@ -1,13 +1,9 @@
-﻿using DAL;
+﻿using BusinessLogic.CQRS.CommandHandlers;
+using BusinessLogic.Infrastructure;
+using DAL;
 using DAL.CQRS;
-using DAL.CQRS.CommandHandlers;
-using DAL.CQRS.Commands;
-using DAL.CQRS.Queries;
-using DAL.CQRS.QueryHandlers;
-using DAL.DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
 namespace Core
 {
@@ -15,14 +11,20 @@ namespace Core
     {
         public static ServiceProvider Init(string connectionString)
         {
-            return new ServiceCollection()
+            var serviceCollection = new ServiceCollection()
                 .AddScoped(s =>
                     new AttributeContext(
                         new DbContextOptionsBuilder<AttributeContext>().UseSqlite(connectionString).Options))
-                .AddTransient<ICommandHandler<UpdateAttributeNameCommand>, UpdateAttributeNameCommandHandler>()
-                .AddTransient<IQueryHandler<GetAttributesQuery, IEnumerable<Attribute>>, GetAttributesQueryHandler>()
+                //.AddTransient<ICommandHandler<UpdateAttributeNameCommand>, UpdateAttributeNameCommandHandler>()
+                //.AddTransient<IQueryHandler<GetAttributesQuery, IEnumerable<Attribute>>, GetAttributesQueryHandler>()
                 .AddTransient<DbValidator>()
-                .BuildServiceProvider();
+                .AddTransient<HandlerBuilder>();
+            //.BuildServiceProvider();
+
+            DataAccessRegistration.AddDataAccess(serviceCollection);
+            BusinessLogicRegistration.AddBusinessLogic(serviceCollection);
+
+            return serviceCollection.BuildServiceProvider();
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace DAL.CQRS.CommandHandlers
 {
-    public class UpdateAttributeNameCommandHandler: CommandHandlerBase<UpdateAttributeNameCommand>
+    public class UpdateAttributeDescriptionCommandHandler : CommandHandlerBase<UpdateAttributeDescriptionCommand>
     {
-        public override void Handle(UpdateAttributeNameCommand command)
+        public override void Handle(UpdateAttributeDescriptionCommand command)
         {
             if (command == null)
             {
@@ -19,7 +19,7 @@ namespace DAL.CQRS.CommandHandlers
                 throw new Exception($"attribute with id:{command.Id} doesn't exists");
             }
 
-            attribute.Name = command.NewName;
+            attribute.Description = command.NewDescription;
         }
     }
 }

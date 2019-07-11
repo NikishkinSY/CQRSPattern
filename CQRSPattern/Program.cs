@@ -29,7 +29,7 @@ namespace CQRSPattern
 
             // update command
             var updateAttributeNameCommandHandler = provider.GetService<ICommandHandler<UpdateAttributeNameCommand>>();
-            updateAttributeNameCommandHandler.Handle(new UpdateAttributeNameCommand("newAttributeName1", 1));
+            updateAttributeNameCommandHandler.Handle(new UpdateAttributeNameCommand(1, "newAttributeName1"));
 
             // get query
             var getAttributesQueryHandler = provider.GetService<IQueryHandler<GetAttributesQuery, IEnumerable<Attribute>>>();
