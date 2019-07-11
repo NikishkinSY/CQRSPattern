@@ -8,7 +8,7 @@ namespace DAL.CQRS.QueryHandlers
     {
         public override IEnumerable<Attribute> Handle(GetAttributesQuery query)
         {
-            return Context.Attributes;
+            return Context.UnitOfWork.DbContext.Attributes;
         }
     }
 }

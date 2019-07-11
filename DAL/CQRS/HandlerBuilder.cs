@@ -5,44 +5,32 @@ namespace DAL.CQRS
 {
     public class HandlerBuilder
     {
-        private UnitOfWorkFactory _unitOfWorkFactory;
+        private IUnitOfWorkFactory _unitOfWorkFactory;
         private IServiceProvider _serviceProvider;
         private IUnitOfWork UnitOfWork { get; set; }
 
-        public HandlerBuilder(UnitOfWorkFactory factory, IServiceProvider serviceProvider)
+        public HandlerBuilder(IUnitOfWorkFactory factory, IServiceProvider serviceProvider)
         {
             _unitOfWorkFactory = factory;
             _serviceProvider = serviceProvider;
-            Initialize();
+            InitializeUnitOfWork();
         }
 
         public THandler Build<THandler>() where THandler: IHandler
         {
             var handler = _serviceProvider.GetService<THandler>();
-            handler.InitializeContext(UnitOfWork.Context, this);
+            handler.InitializeContext(new HandlerContext(UnitOfWork, this));
             return handler;
         }
 
-        private void Initialize()
+        private IUnitOfWork InitializeUnitOfWork()
         {
             if (UnitOfWork == null)
             {
-                RunInNewContext();
+                this.UnitOfWork = _unitOfWorkFactory.CreateUnitOfWork();
             }
-            else
-            {
-                RunInParentContext();
-            }
-        }
 
-        public void RunInNewContext()
-        {
-            this.UnitOfWork = _unitOfWorkFactory.CreateUnitOfWork();
-        }
-
-        public void RunInParentContext()
-        {
-
+            return this.UnitOfWork;
         }
     }
 }

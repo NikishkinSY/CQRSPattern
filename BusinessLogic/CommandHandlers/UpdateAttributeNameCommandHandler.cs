@@ -13,7 +13,7 @@ namespace DAL.CQRS.CommandHandlers
                 throw new ArgumentException("command parameter is null");
             }
 
-            var attribute = Context.Attributes.FirstOrDefault(x => x.Id == command.Id);
+            var attribute = Context.UnitOfWork.DbContext.Attributes.FirstOrDefault(x => x.Id == command.Id);
             if (attribute == null)
             {
                 throw new Exception($"attribute with id:{command.Id} doesn't exists");

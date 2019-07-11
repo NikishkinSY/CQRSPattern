@@ -1,6 +1,6 @@
 ﻿namespace DAL.CQRS
 {
-    public class UnitOfWorkFactory
+    public class UnitOfWorkFactory: IUnitOfWorkFactory
     {
         private AttributeContext _context;
         public UnitOfWorkFactory(AttributeContext context)

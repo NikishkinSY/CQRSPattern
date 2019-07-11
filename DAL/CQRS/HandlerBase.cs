@@ -2,15 +2,13 @@
 {
     public abstract class HandlerBase: IHandler
     {
-        public AttributeContext Context { get; set; }
-        private HandlerBuilder _handlerBuilder;
+        public HandlerContext Context { get; set; }
 
-        public void InitializeContext(AttributeContext context, HandlerBuilder handlerBuilder)
+        public void InitializeContext(HandlerContext context)
         {
             Context = context;
-            _handlerBuilder = handlerBuilder;
         }
 
-        public THandler GetHandler<THandler>() where THandler: class, IHandler => _handlerBuilder.Build<THandler>();
+        public THandler GetHandler<THandler>() where THandler: class, IHandler => Context.HandlerBuilder.Build<THandler>();
     }
 }

@@ -7,7 +7,7 @@ namespace BusinessLogic.Infrastructure
     {
         public static void AddDataAccess(this IServiceCollection services)
         {
-            services.AddTransient<UnitOfWorkFactory>();
+            services.AddTransient<IUnitOfWorkFactory, UnitOfWorkFactory>();
             services.AddTransient<HandlerBuilder>();
             services
                 .Scan(scan => scan

@@ -2,8 +2,8 @@
 {
     public interface IHandler
     {
-        AttributeContext Context { get; set; }
-        void InitializeContext(AttributeContext context, HandlerBuilder handlerBuilder);
+        HandlerContext Context { get; set; }
+        void InitializeContext(HandlerContext context);
         THandler GetHandler<THandler>() where THandler : class, IHandler;
     }
 }

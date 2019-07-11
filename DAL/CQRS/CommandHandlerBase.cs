@@ -4,17 +4,16 @@ namespace DAL.CQRS
 {
     public abstract class CommandHandlerBase<TCommand> : HandlerBase, ICommandHandler<TCommand> where TCommand: ICommand
     {
-        public int Process(TCommand command)
+        public void Process(TCommand command)
         {
             try
             {
                 Handle(command);
-                return Context.SaveChanges();
+                Context.UnitOfWork.Commit();
             }
             catch (Exception ex)
             {
                 // log
-                return default(int);
             }
         }
 
