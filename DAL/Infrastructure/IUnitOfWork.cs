@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace DAL.CQRS
+﻿namespace DAL.CQRS
 {
     public interface IUnitOfWork
     {
